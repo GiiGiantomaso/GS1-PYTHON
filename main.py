@@ -12,3 +12,27 @@ class Farmacia:
        print("Lista de Medicamentos Disponíveis:")
        for medicamento, estoque in self.medicamentos_disponiveis.items():
            print(f"{medicamento}: {estoque} unidades")
+
+   def realizar_compra(self):
+       print("Realizar Compra:")
+       self.consultar_medicamentos()
+       medicamento_escolhido = input("Digite o nome do medicamento desejado: ")
+       quantidade_desejada = int(input("Digite a quantidade desejada: "))
+       if (
+           medicamento_escolhido in self.medicamentos_disponiveis
+           and quantidade_desejada <= self.medicamentos_disponiveis[medicamento_escolhido]
+       ):
+           self.medicamentos_disponiveis[medicamento_escolhido] -= quantidade_desejada
+           self.pedidos.append({medicamento_escolhido: quantidade_desejada})
+           print("Compra realizada com sucesso!")
+       else:
+           print(
+               "Desculpe, o medicamento escolhido não está disponível ou a quantidade desejada é maior do que o estoque."
+           )
+   def consultar_pedidos(self):
+       print("Consultar Pedidos:")
+       if not self.pedidos:
+           print("Nenhum pedido realizado até o momento.")
+       else:
+           for index, pedido in enumerate(self.pedidos, start=1):
+               print(f"Pedido {index}: {pedido}")
