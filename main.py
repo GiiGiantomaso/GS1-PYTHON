@@ -36,3 +36,23 @@ class Farmacia:
        else:
            for index, pedido in enumerate(self.pedidos, start=1):
                print(f"Pedido {index}: {pedido}")
+
+   def menu_principal(self):
+       while True:
+           self.exibir_menu_principal()
+           escolha = input("Digite o número da opção desejada: ")
+           if escolha == "1":
+               self.consultar_medicamentos()
+           elif escolha == "2":
+               self.realizar_compra()
+           elif escolha == "3":
+               self.consultar_pedidos()
+           elif escolha == "4":
+               print("Saindo... Obrigado!")
+               break
+           else:
+               print("Opção inválida. Por favor, escolha novamente.")
+
+if __name__ == "__main__":
+   farmacia_online = Farmacia()
+   farmacia_online.menu_principal()
